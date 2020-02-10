@@ -74,3 +74,15 @@ body {
   text-align: center;
   font-style: sans-serif;
 }
+
+.qrcode-text {
+  padding-right: 1.7em;
+  margin-right: 0;
+  vertical-align: middle;
+}
+
+.qrcode-text + .qrcode-text-btn {
+  width: 1.7em;
+  margin-left: -1.7em;
+  vertical-align: middle;
+}

@@ -9,30 +9,35 @@
   <script src="js/jquery-3.4.1.js"></script>
   <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
   </script>
+
   <script>
 
-      var queryStr = window.location.search; 
-      var paramPairs = queryStr.substr(1).split('&');
-      var params = {};
-      for (var i = 0; i < paramPairs.length; i++) {
-        var parts = paramPairs[i].split('=');
-        params[parts[0]] = parts[1];
-      }
-      slot=params.slot;
-      $(document).ready(function() {
-        $('#qr').ClassyQR({
-          create: true, // signals the library to create the image tag inside the container div.
-          type: 'text', // text/url/sms/email/call/locatithe text to encode in the QR. on/wifi/contact, default is TEXT
-          text: slot// the text to encode in the QR. 
-        });
-        });
-
-
+        function openQRCamera(node) {
+          var reader = new FileReader();
+          reader.onload = function() {
+            node.value = "";
+            qrcode.callback = function(res) {
+              if(res instanceof Error) {
+                alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+              } else {
+                node.parentNode.previousElementSibling.value = res;
+              }
+            };
+            qrcode.decode(reader.result);
+          };
+          reader.readAsDataURL(node.files[0]);
+        }
+        
   </script>
 
 </head>
 <body class="book">
     <div class="qrcode" id="qr">
+      <input type=file
+       accept="image/*"
+       capture=environment
+       onchange="openQRCamera(this);"
+       tabindex=-1>
     </div>
 </body>
 </html>
