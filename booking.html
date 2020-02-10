@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/rest.js"></script>
+  <script>
+
+      var queryStr = window.location.search; 
+      var paramPairs = queryStr.substr(1).split('&');
+      var params = {};
+      for (var i = 0; i < paramPairs.length; i++) {
+        var parts = paramPairs[i].split('=');
+        params[parts[0]] = parts[1];
+      }
+      user=params.user;
+      getDetails(user);
+
+
+  </script>
+
+</head>
+<body class="book">
+  <div style="float: left;color:darkcyan;"><h3  id="userwelcome"> </h3></div>
+	<div class="login-page">
+  	<div class="form">
+      <h5>Book Carpark</h5>
+      <div  class="login-form" >
+      <!-- <form class="login-form" id="loginForm">  -->
+        <input type="text" id="slotNo" placeholder="Slot No"/>
+        <input type="text" id="vehicleNo" placeholder="Vehicle No"/>
+        <button onclick="book()">Book</button>
+       <!-- </form>  -->
+      </div>
+     </div>
+  </div>
+
+</body>
+</html>

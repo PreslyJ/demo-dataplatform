@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
+  </script>
+  <script>
+
+      var queryStr = window.location.search; 
+      var paramPairs = queryStr.substr(1).split('&');
+      var params = {};
+      for (var i = 0; i < paramPairs.length; i++) {
+        var parts = paramPairs[i].split('=');
+        params[parts[0]] = parts[1];
+      }
+      slot=params.slot;
+      $(document).ready(function() {
+        $('#qr').ClassyQR({
+          create: true, // signals the library to create the image tag inside the container div.
+          type: 'text', // text/url/sms/email/call/locatithe text to encode in the QR. on/wifi/contact, default is TEXT
+          text: slot// the text to encode in the QR. 
+        });
+        });
+
+
+  </script>
+
+</head>
+<body class="book">
+    <div class="qrcode" id="qr">
+    </div>
+</body>
+</html>
