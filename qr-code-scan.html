@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
   <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/rest.js"></script>
   <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
   </script>
 
@@ -18,9 +19,9 @@
             node.value = "";
             qrcode.callback = function(res) {
               if(res instanceof Error) {
-                alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+                alert("Check in failed. No QR code found. Please make sure the QR code is within the camera's frame and try again.");
               } else {
-                alert(res);
+                document.getElementById('msg1').innerHTML='Check in success : Welcome - '+res;
               }
             };
             qrcode.decode(reader.result);
@@ -32,12 +33,24 @@
 
 </head>
 <body class="book">
-    <div class="qrcode" id="qr">
-      <input type=file
-       accept="image/*"
-       capture=environment
-       onchange="openQRCamera(this);"
-       tabindex=-1>
-    </div>
+  <div style="float: left;color:darkcyan;"><h3  id="userwelcome"> </h3></div>
+	<div class="login-page">
+  	<div class="form">
+      <h4>Check Booking</h4>
+<p id="msg1"></p>
+
+          <input type=file
+          accept="image/*"
+          id="qr1"
+          style="display:none;"
+          onchange="openQRCamera(this);"
+          tabindex=-1>
+          <button ><label for="qr1">Select QR</label></button>
+
+          
+      </div>
+     </div>
+  </div>
+
 </body>
 </html>

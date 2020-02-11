@@ -109,11 +109,16 @@ function getDetails (user){
 
 function book (){
 
-    var slotNo=document.getElementById("slotNo").value;   
     var vehicleNo=document.getElementById("vehicleNo").value;   
 
+    if(!vehicleNo || vehicleNo.length < 1){
 
-    newData =JSON.parse('{ "slotNo":"'+slotNo+'", "vehicleNo":"'+vehicleNo+'", "name":"'+user+'"}');
+        alert("Vehicle No can't be empty");
+        return;
+
+    }
+
+    newData =JSON.parse('{  "vehicleNo":"'+vehicleNo+'", "name":"'+user+'"}');
 
     var data = JSON.stringify(newData);
 
@@ -136,10 +141,10 @@ function book (){
 
 
                     alert('Booking success');
+                    
+                    qr(userna);
 
-
-                    document.getElementById("slotNo").value="";   
-                    document.getElementById("vehicleNo").value="";   
+                    document.getElementById("msg").innerHTML="Your Car Park Slot No - "+data.slotNo;   
 
                 }else{
 
@@ -160,3 +165,30 @@ function book (){
     }
 
 }
+
+
+function downloadqr(){
+
+    var d= document.getElementById("qr1").src;
+
+
+    jQuery.ajax({
+        url: d,
+        xhrFields:{
+            responseType: 'blob'
+        },
+        success: function(data){            
+            var blobData = data;
+            var urlCreator = window.URL || window.webkitURL;
+            var imageUrl = urlCreator.createObjectURL(data);
+            var tag = document.createElement('a');
+            tag.href = imageUrl;
+            tag.download = "q.png";
+            document.body.appendChild(tag);
+            tag.click();
+            document.body.removeChild(tag);
+          
+        }
+    });
+
+  }

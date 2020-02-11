@@ -10,28 +10,43 @@
   <script type="text/javascript" src="js/jquery.classyqr.min.js"></script>
   <script>
 
-      var queryStr = window.location.search; 
-      var paramPairs = queryStr.substr(1).split('&');
-      var params = {};
-      for (var i = 0; i < paramPairs.length; i++) {
-        var parts = paramPairs[i].split('=');
-        params[parts[0]] = parts[1];
-      }
-      slot=params.slot;
+      // var queryStr = window.location.search; 
+      // var paramPairs = queryStr.substr(1).split('&');
+      // var params = {};
+      // for (var i = 0; i < paramPairs.length; i++) {
+      //   var parts = paramPairs[i].split('=');
+      //   params[parts[0]] = parts[1];
+      // }
+      // slot=params.slot;
+      // $(document).ready(function() {
+      //     $('#qr').ClassyQR({
+      //       create: true, // signals the library to create the image tag inside the container div.
+      //       type: 'text', // text/url/sms/email/call/locatithe text to encode in the QR. on/wifi/contact, default is TEXT
+      //       text: slot// the text to encode in the QR. 
+      //     });
+      //   });
+
       $(document).ready(function() {
-        $('#qr').ClassyQR({
-          create: true, // signals the library to create the image tag inside the container div.
-          type: 'text', // text/url/sms/email/call/locatithe text to encode in the QR. on/wifi/contact, default is TEXT
-          text: slot// the text to encode in the QR. 
-        });
-        });
+          $("#qr1").ClassyQR({
+              type: 'text',
+              text: 'This is the text to embed'
+          })
+      });
 
 
   </script>
 
 </head>
 <body class="book">
-    <div class="qrcode" id="qr">
-    </div>
+    <!-- <div class="qrcode" style="align-content: center;" id="qr">
+
+
+
+
+    </div> -->
+
+    <img src="#" id="qr1" alt="" />
+
+
 </body>
 </html>

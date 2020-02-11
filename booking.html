@@ -8,6 +8,37 @@
 
   <script src="js/jquery-3.4.1.js"></script>
   <script src="js/rest.js"></script>
+  <script type="text/javascript" src="js/jquery.classyqr.min.js"></script>
+  <script>
+
+      function qr(slot){
+
+     
+
+        $(document).ready(function() {
+          
+          document.getElementById("dwnbtn").style.visibility = "visible";
+
+
+            $('#qr1').ClassyQR({
+              type: 'text', // text/url/sms/email/call/locatithe text to encode in the QR. on/wifi/contact, default is TEXT
+              text: slot  // the text to encode in the QR. 
+            });
+
+
+
+          });
+        
+      }
+
+
+ 
+
+      
+
+
+  </script>
+
   <script>
 
       var queryStr = window.location.search; 
@@ -28,13 +59,17 @@
   <div style="float: left;color:darkcyan;"><h3  id="userwelcome"> </h3></div>
 	<div class="login-page">
   	<div class="form">
-      <h5>Book Carpark</h5>
+      <h4>Book Carpark</h4>
       <div  class="login-form" >
       <!-- <form class="login-form" id="loginForm">  -->
-        <input type="text" id="slotNo" placeholder="Slot No"/>
         <input type="text" id="vehicleNo" placeholder="Vehicle No"/>
         <button onclick="book()">Book</button>
        <!-- </form>  -->
+       <br/>
+       <img src="#" id="qr1" alt="" />
+       <p id="msg" ></p> <br/>
+       <button  onclick="downloadqr()" style="visibility: hidden" id="dwnbtn">Download QR</button>
+
       </div>
      </div>
   </div>
