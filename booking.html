@@ -40,17 +40,34 @@
   </script>
 
   <script>
+    
+    function onload(){
 
-      var queryStr = window.location.search; 
-      var paramPairs = queryStr.substr(1).split('&');
-      var params = {};
-      for (var i = 0; i < paramPairs.length; i++) {
-        var parts = paramPairs[i].split('=');
-        params[parts[0]] = parts[1];
-      }
-      user=params.user;
-      getDetails(user);
+      $(document).ready(function() {
 
+        
+              var queryStr = window.location.search; 
+              var paramPairs = queryStr.substr(1).split('&');
+              var params = {};
+              for (var i = 0; i < paramPairs.length; i++) {
+                var parts = paramPairs[i].split('=');
+                params[parts[0]] = parts[1];
+              }
+              var firstName=params.firstName;
+              var lastName=params.lastName;
+              
+              user=params.user;
+            // getDetails(user);
+
+
+            userna=firstName+' '+lastName;
+
+            document.getElementById("userwelcome").innerHTML= 'Welcome  '+userna;
+        });
+      
+    }
+
+    onload();
 
   </script>
 

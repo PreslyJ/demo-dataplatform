@@ -33,10 +33,9 @@ function login (e){
                 //alert(data);
 
               
-                if(data.status == 'success'){
+                if(data.emp){
 
-
-                    window.location.href = 'booking.html?user='+newData.username;
+                    window.location.href = 'booking.html?user='+user+'&firstName='+data.emp[0].firstName+'&lastName='+data.emp[0].lastName;
 
 
                 }else{
@@ -142,7 +141,7 @@ function book (){
 
                     alert('Booking success');
                     
-                    qr(userna);
+                    qr(data.slotNo);
 
                     document.getElementById("msg").innerHTML="Your Car Park Slot No - "+data.slotNo;   
 

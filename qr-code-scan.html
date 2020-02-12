@@ -13,6 +13,59 @@
 
   <script>
 
+
+
+
+        function checkin (slot){
+
+
+            newData =JSON.parse('{ "slot":'+slot+'}');
+
+            var data = JSON.stringify(newData);
+
+
+            try {
+                
+                $.ajax({
+                    url: 'http://13.75.65.67/nodered/tenant1/checkin',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: data,
+                    async:true,
+                    processData: false,
+                    success: function( data, textStatus, jQxhr ){
+
+                      
+                        if(data.slotNo){
+
+                            document.getElementById('msg1').innerHTML='Check in success : welcome - '+data.name+' Vehicle No - '+data.vehicleNo+' Slot No - '+data.slotNo;
+
+
+
+                        }else{
+
+
+                            alert('Checkin failed Slot is not assigned');
+
+                        }
+
+
+
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        alert(errorThrown);
+                    }
+                });
+
+            } catch (error) {
+                alert(error);    
+            }
+
+        }
+
+
+
         function openQRCamera(node) {
           var reader = new FileReader();
           reader.onload = function() {
@@ -21,7 +74,7 @@
               if(res instanceof Error) {
                 alert("Check in failed. No QR code found. Please make sure the QR code is within the camera's frame and try again.");
               } else {
-                document.getElementById('msg1').innerHTML='Check in success : Welcome - '+res;
+                checkin(res);
               }
             };
             qrcode.decode(reader.result);
