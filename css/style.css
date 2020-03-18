@@ -19,10 +19,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
-
+.login-page1 {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
 
 .login-page {
-  width: 360px;
+  width: 960px;
   padding: 8% 0 0;
   margin: auto;
 }

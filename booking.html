@@ -9,6 +9,7 @@
   <script src="js/jquery-3.4.1.js"></script>
   <script src="js/rest.js"></script>
   <script type="text/javascript" src="js/jquery.classyqr.min.js"></script>
+
   <script>
 
       function qr(slot){
@@ -40,12 +41,47 @@
   </script>
 
   <script>
-    
+
+    function getDay(){
+
+
+      var d = new Date();
+      var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+
+       return weekday[d.getDay()];
+
+
+
+    }
+
+
+    function todayj(){
+  
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+       return mm + '/' + dd + '/' + yyyy;
+
+        
+
+    }
+
+
+
+
     function onload(){
 
       $(document).ready(function() {
 
-        
               var queryStr = window.location.search; 
               var paramPairs = queryStr.substr(1).split('&');
               var params = {};
@@ -73,9 +109,22 @@
 
 </head>
 <body class="book">
-  <div style="float: left;color:darkcyan;"><h3  id="userwelcome"> </h3></div>
-	<div class="login-page">
-  	<div class="form">
+  <div style="float: left;color:darkcyan;"><h3  id="userwelcome"> </h3></div></br></br></br></br>
+
+  <div class="login-page">
+
+    <div  style="text-align: center" ><h3  >Today  <script>        document.write(todayj());
+    </script> &nbsp;&nbsp;&nbsp;&nbsp; is &nbsp;&nbsp;<script>document.write(getDay())</script> </h3></div>
+  
+    <div style="text-align: center"><h3>You have a meeting with Micheals at 11.00 am  </h3></div>
+  
+    <div style="text-align: center" ><h3>You have dinner with Eric at 17.00 am  </h3></div>
+    
+    
+  <table> 
+    <tr>
+      <td>
+      <div class="form" style="float: left;">
       <h4>Book Carpark</h4>
       <div  class="login-form" >
       <!-- <form class="login-form" id="loginForm">  -->
@@ -88,7 +137,45 @@
        <button  onclick="downloadqr()" style="visibility: hidden" id="dwnbtn">Download QR</button>
 
       </div>
+      
      </div>
+    </td>
+    <td></td>
+    <td>
+      <div class="form" style="float: left;">
+      <h4>Reserve Restaurant</h4>
+      <div  class="login-form" >
+      <!-- <form class="login-form" id="loginForm">  -->
+        <input type="text" id="vehicleNo" placeholder="Restaurant"/>
+        <button onclick="" >Reserve</button>
+        <br/>
+        <img src="#" id="qr1" alt="" />
+       <p id="msg" ></p> <br/>
+       <button  onclick="downloadqr()" style="visibility: hidden" id="dwnbtn">Download QR</button>
+
+      </div>
+      
+     </div>
+    </td>
+    <td></td>
+    <td>
+      <div class="form" style="float: left;">
+      <h4>Traffic Information</h4>
+      <div  class="login-form" >
+
+        <input type="text" id="vehicleNo" placeholder="Route"/>
+        <button onclick="">View</button>
+        </br>
+        <img src="#" id="qr1" alt="" />
+        <p id="msg" ></p> <br/>
+        <button  onclick="downloadqr()" style="visibility: hidden" id="dwnbtn">Download QR</button>
+
+      </div>
+      
+     </div>
+    </td>
+    </tr>
+  </table>
   </div>
 
 </body>
